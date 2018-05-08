@@ -1,5 +1,6 @@
-在bin/catalina.bat文件中加入下面参数，对JVM进行优化
-```
+1、在bin/catalina.bat文件中加入下面参数，对JVM进行优化
+来源：http://www.open-open.com/lib/view/open1401931407228.html
+
 set JAVA_OPTS=
 -server 
 -Xms1000M 
@@ -17,4 +18,33 @@ set JAVA_OPTS=
 -XX:+UseFastAccessorMethods 
 -XX:+UseCMSInitiatingOccupancyOnly 
 -Djava.awt.headless=true
-```
+
+作用：
+1>系统响应时间增快
+2>JVM回收速度增快同时又不影响系统的响应率
+3>JVM内存最大化利用
+4>线程阻塞情况最小化
+
+2、修改conf/server.xml文件，从内存、并发、缓存4个方面优化配置
+来源：https://blog.csdn.net/centre10/article/details/50639693
+
+<Connector port="8080"  
+        protocol="org.apache.coyote.http11.Http11NioProtocol"  
+        maxHttpHeaderSize="8192"  
+        maxThreads="1000"  
+        minSpareThreads="100"  
+        maxSpareThreads="1000"  
+        minProcessors="100"  
+        maxProcessors="1000"  
+        enableLookups="false"  
+        compression="on"  
+        compressionMinSize="1024"  
+        noCompressionUserAgents="gozilla, traviata"  
+        compressableMimeType="text/html,text/xml,text/javascript,text/css,text/plain"  
+        connectionTimeout="25000"  
+        URIEncoding="utf-8"  
+        acceptCount="1000"  
+        redirectPort="8443"  
+        disableUploadTimeout="true" />  
+
+
