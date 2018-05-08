@@ -1,0 +1,20 @@
+在bin/catalina.bat文件中加入下面参数，对JVM进行优化
+```
+set JAVA_OPTS=
+-server 
+-Xms1000M 
+-Xmx1000M   #-Xms与-Xmx设成一样的值，避免JVM因为频繁的GC导致性能大起大落
+-Xss512k 
+-XX:+AggressiveOpts 
+-XX:+UseBiasedLocking  
+-XX:+DisableExplicitGC 
+-XX:MaxTenuringThreshold=15 
+-XX:+UseConcMarkSweepGC 
+-XX:+UseParNewGC  
+-XX:+CMSParallelRemarkEnabled 
+-XX:+UseCMSCompactAtFullCollection 
+-XX:LargePageSizeInBytes=128m  
+-XX:+UseFastAccessorMethods 
+-XX:+UseCMSInitiatingOccupancyOnly 
+-Djava.awt.headless=true
+```
